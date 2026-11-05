@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --surface-2: #eef1f6;
+  --border: #dde3ec;
+  --text: #111827;
+  --muted: #5b6678;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --on-primary: #ffffff;
+  --income: #15803d;
+  --expense: #dc2626;
+  --warning: #b45309;
+  --income-soft: #dcfce7;
+  --expense-soft: #fee2e2;
+  --warning-soft: #fef3c7;
+  --primary-soft: #dbeafe;
+  --chart-income: #16a34a;
+  --chart-expense: #ef4444;
+  --chart-net: #2563eb;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #0b1220;
+  --surface: #131c2e;
+  --surface-2: #1c273c;
+  --border: #2a3650;
+  --text: #f1f5f9;
+  --muted: #9aa8bd;
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --on-primary: #06101f;
+  --income: #4ade80;
+  --expense: #f87171;
+  --warning: #fbbf24;
+  --income-soft: #12301f;
+  --expense-soft: #3b1a1d;
+  --warning-soft: #362a10;
+  --primary-soft: #16294a;
+  --chart-income: #4ade80;
+  --chart-expense: #f87171;
+  --chart-net: #60a5fa;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-income: var(--income);
+  --color-expense: var(--expense);
+  --color-warning: var(--warning);
+  --color-income-soft: var(--income-soft);
+  --color-expense-soft: var(--expense-soft);
+  --color-warning-soft: var(--warning-soft);
+  --color-primary-soft: var(--primary-soft);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+html[lang="ur"] body {
+  font-family: "Noto Naskh Arabic", Inter, system-ui, sans-serif;
+  line-height: 1.7;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+dialog::backdrop {
+  background: rgb(0 0 0 / 0.55);
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-line bg-surface;
+  }
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger {
+    @apply inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg px-4 text-sm font-medium whitespace-nowrap transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-primary text-on-primary;
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: var(--primary-hover);
+  }
+  .btn-secondary {
+    @apply border border-line bg-surface text-ink hover:bg-surface-2;
+  }
+  .btn-danger {
+    @apply bg-expense text-surface hover:opacity-90;
+  }
+  .btn-icon {
+    @apply inline-flex size-10 cursor-pointer items-center justify-center rounded-lg text-muted transition-colors hover:bg-surface-2 hover:text-ink disabled:opacity-40;
+  }
+  .field {
+    @apply min-h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink placeholder:text-muted;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium;
+  }
+  .field-error {
+    @apply mt-1 text-sm text-expense;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
